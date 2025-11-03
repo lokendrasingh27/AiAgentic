@@ -29,9 +29,9 @@ const Header = () => {
                  <Link to="/Benifits" className="hover:text-blue-500 transition">
                    Benefits
                  </Link>
-                 <a href="#contact" className="hover:text-blue-500 transition">
+                 {/* <a href="#contact" className="hover:text-blue-500 transition">
                    Contact
-                 </a>
+                 </a> */}
                   <div className="hidden md:block">
           <a
             href="#demo"
