@@ -2,10 +2,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 const industriesData = [
   { key: "Doctors & Clinics", name: "Doctors & Clinics", img: "/logos/doctor.png" },
@@ -132,8 +137,18 @@ export default function DIYAgentPortal() {
   }, {});
 
   return (
-    <div className="min-h-screen text-white overflow-hidden selection:bg-brand-500/40 selection:text-white">
-      {/* Inline original CSS block to preserve exact look */}
+    <div className="min-h-screen text-white overflow-hidden p-4 selection:bg-brand-500/40 selection:text-white">
+      <Link to='/'>
+                <motion.a
+                   href="#"
+                   whileHover={{ y: -3, scale: 1.05 }}
+                   whileTap={{ scale: 0.95 }}
+                   className="inline-flex items-center  rounded-full px-2 py-2 font-semibold bg-gradient-to-r from-[#855afc] to-[#0ea5e9] text-white"
+                 >
+                  <FaArrowLeft /> <span></span>
+                 </motion.a>
+                </Link> {/* Inline original CSS block to preserve exact look */}
+ {/* <Header /> */}
       <style>{`
         /* Dark gradient background with subtle overlays for depth */
         body {
@@ -295,7 +310,7 @@ export default function DIYAgentPortal() {
 
           <div className="space-y-3">
             {Object.keys(grouped).map(category => (
-              <details key={category} open className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 shadow-soft p-4">
+              <details key={category} open className="rounded-2xl bg-[#0A0810] backdrop-blur border border-white/10 shadow-soft p-4">
                 <summary className="cursor-pointer font-semibold text-white/80">{category}</summary>
                 <div className="mt-3 space-y-3">
                   {grouped[category].map(a => (
@@ -349,14 +364,14 @@ export default function DIYAgentPortal() {
           <p className="text-sm text-white/70">As you toggle agents, they appear below around the shared memory core.</p> 
          </div>
 
-          <div className="rounded-3xl bg-white/5 backdrop-blur border border-white/10 shadow-soft p-6 flex flex-col">
-            <div className="relative rounded-2xl border bg-[url('/videos/bg2.gif')] border-white/10 bg-white/5 p-5 flex-1 min-h-[320px] grid-bg">
+          <div className="rounded-3xl bg-[#0A0810] backdrop-blur border border-white/10 shadow-soft p-6 flex flex-col">
+            <div className="relative rounded-2xl border bg-[url('/images/bg2.gif')] bg-cover bg-center border-white/10 bg-white/5 p-5 flex-1 min-h-[320px] grid-bg">
               {/* Center node */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-                <div className="px-4 py-2 rounded-full bg-brand-700/70 border border-white/10 shadow-soft">
+                {/* <div className="px-4 py-2 rounded-full bg-brand-700/70 border border-white/10 shadow-soft">
                   <span className="text-sm font-semibold">Memory Core</span>
-                </div>
-                <div className="mt-2 text-xs text-white/70">Shared context across agents</div>
+                </div> */}
+                <div className="mt-2 text-xs text-white/70"></div>
               </div>
 
               {/* Agent chips placed in a simple layout around center */}
@@ -364,7 +379,7 @@ export default function DIYAgentPortal() {
                 {selectedAgents.map((a, idx) => (
                   <div
                     key={a.name}
-                    className="px-3 py-1 rounded-full bg-brand-700/80 border border-white/15 text-sm font-medium whitespace-nowrap"
+                    className="px-3 py-1 rounded-full bg-black bg-brand-700/80 border border-white/15 text-sm font-medium whitespace-nowrap"
                     role="status"
                   >
                     {a.name}
@@ -391,7 +406,7 @@ export default function DIYAgentPortal() {
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             {/* Text */}
-            <div className="rounded-2xl bg-white/5 w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="text">
+            <div className="rounded-2xl bg-[#0A0810] w-90 h-64 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="text">
               <div className="flex items-center gap-3 mb-2">
                 <svg className="h-6 w-6 text-mint" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
                 <div className="font-semibold">Text</div>
@@ -402,7 +417,7 @@ export default function DIYAgentPortal() {
             </div>
 
             {/* Voice */}
-            <div className="rounded-2xl bg-white/5 w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="voice">
+            <div className="rounded-2xl bg-[#0A0810] w-90 h-64 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="voice">
               <div className="flex items-center gap-3 mb-2">
                 <svg className="h-6 w-6 text-mint" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><path d="M12 19v4"/><path d="M8 23h8"/></svg>
                 <div className="font-semibold">Voice</div>
@@ -412,7 +427,7 @@ export default function DIYAgentPortal() {
             </div>
 
             {/* Video */}
-            <div className="rounded-2xl bg-white/5 w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="video">
+            <div className="rounded-2xl bg-[#0A0810] w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="video">
               <div className="flex items-center gap-3 mb-2">
                 <svg className="h-6 w-6 text-mint" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14"/><rect width="14" height="10" x="1" y="7" rx="2" ry="2"/></svg>
                 <div className="font-semibold">Video</div>
@@ -422,7 +437,7 @@ export default function DIYAgentPortal() {
             </div>
 
             {/* Books & Docs */}
-            <div className="rounded-2xl bg-white/5 w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="books">
+            <div className="rounded-2xl bg-[#0A0810] w-90 h-64 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="books">
               <div className="flex items-center gap-3 mb-2">
                 <svg className="h-6 w-6 text-mint" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17h11a2.5 2.5 0 012.5 2.5"/><path d="M4 4.5A2.5 2.5 0 016.5 2h11A2.5 2.5 0 0120 4.5"/><path d="M4 4.5v15"/><path d="M20 4.5v15"/><path d="M9 10h6"/><path d="M9 14h6"/></svg>
                 <div className="font-semibold">Books &amp; Docs</div>
@@ -432,7 +447,7 @@ export default function DIYAgentPortal() {
             </div>
 
             {/* Links */}
-            <div className="rounded-2xl bg-white/5 w-90 h-60 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="links">
+            <div className="rounded-2xl bg-[#0A0810] w-90 h-64 backdrop-blur border border-white/10 shadow-soft p-4 dropzone" data-type="links">
               <div className="flex items-center gap-3 mb-2">
                 <svg className="h-6 w-6 text-mint" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M10 14L21 3"/><path d="M15 3h6v6"/><path d="M10 3H5a2 2 0 00-2 2v12c0 1.1.9 2 2 2h12a2 2 0 002-2v-5"/></svg>
                 <div className="font-semibold">External Links</div>

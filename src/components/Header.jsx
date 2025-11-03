@@ -1,58 +1,139 @@
-import React from 'react'
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-//    <!-- Header / Navbar -->
-<header class=" bg-black text-white border-b-1 py-1 border-gray-700 shadow-md  top-0 z-50">
-  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-    {/* <!-- Logo / Brand --> */}
-    <a href="#" class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#855afc] via-[#0ea5e9] to-[#f97316] ">Agentic AI Suite</a>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[rgba(12,14,26,0.95)] border-b border-white/5 backdrop-blur px-4">
+      <div className="mx-auto max-w-7xl flex items-center justify-between py-4">
+        <Link
+          to="/"
+          className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#855afc] via-[#0ea5e9] to-[#f97316]"
+        >
+          Agentic AI Suite
+        </Link>
 
-    {/* <!-- Desktop Menu --> */}
-    <nav class="hidden md:flex items-center gap-8  font-">
-      <a href="#home" class="hover:text-blue-600 transition">Home</a>
-      <a href="#about" class="hover:text-blue-600 transition">About</a>
-      <a href="#architecture" class="hover:text-blue-600 transition">Architecture</a>
-      <a href="#industries" class="hover:text-blue-600 transition">Industries</a>
-      <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
-    </nav>
+        {/* Desktop Nav */}
+       <nav className="hidden md:flex items-center gap-8 font-medium">
+                 <Link to="/" className="hover:text-blue-500 transition">
+                   Home
+                 </Link>
+                 <Link to="/AgenticSuite" className="hover:text-blue-500 transition">
+                   AgenticSuite
+                 </Link>
+                 <Link to="/Industries" className="hover:text-blue-500 transition">
+                   Industries
+                 </Link>
+                 <Link to="/Benifits" className="hover:text-blue-500 transition">
+                   Benefits
+                 </Link>
+                 <a href="#contact" className="hover:text-blue-500 transition">
+                   Contact
+                 </a>
+                  <div className="hidden md:block">
+          <a
+            href="#demo"
+            className="inline-flex items-center gap-2 rounded-[12px] px-6 py-3 font-semibold bg-gradient-to-r from-[#855afc] to-[#0ea5e9] text-white hover:opacity-90"
+          >
+            Book a Demo <span>→</span>
+          </a>
+        </div>
+               </nav>
 
-    {/* <!-- CTA Button --> */}
-    <div class="hidden md:block">
-  <a
-    href="#demo"
-    
-    className="inline-flex items-center gap-2 rounded-[12px] px-6 py-3 font-semibold bg-gradient-to-r from-[#855afc] to-[#0ea5e9] text-white"
-  >
-   Book a Demo <span>→</span>
-  </a>    </div>
+        {/* Mobile Hamburger */}
+        <div className="md:hidden flex items-center">
+          <motion.button
+            aria-label="menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative w-8 h-8 flex flex-col justify-between items-center"
+          >
+            {/* Hamburger Lines */}
+            <motion.span
+              animate={mobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              className="block w-8 h-0.5 bg-white rounded"
+            />
+            <motion.span
+              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block w-8 h-0.5 bg-white rounded"
+            />
+            <motion.span
+              animate={mobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              className="block w-8 h-0.5 bg-white rounded"
+            />
+          </motion.button>
+        </div>
+      </div>
 
-    {/* <!-- Mobile Menu Button --> */}
-    <button id="menu-btn" class="md:hidden text-3xl text-gray-700 focus:outline-none">
-      ☰
-    </button>
-  </div>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden flex flex-col gap-3 px-6 pb-4 bg-[rgba(12,14,26,0.95)] border-t border-white/5 overflow-hidden"
+          >
+            <nav className="flex flex-col items-start gap-4 p-6 text-lg">
+                      <Link
+                        to="/"
+                        onClick={() => setIsOpen(false)}
+                        className="hover:text-blue-400 transition w-full"
+                      >
+                        Home
+                      </Link>
+                      <Link
+                        to="/AgenticSuite"
+                        onClick={() => setIsOpen(false)}
+                        className="hover:text-blue-400 transition w-full"
+                      >
+                        AgenticSuite
+                      </Link>
+                      <Link
+                        to="/Industries"
+                        onClick={() => setIsOpen(false)}
+                        className="hover:text-blue-400 transition w-full"
+                      >
+                        Industries
+                      </Link>
+                      <Link
+                        to="/Benifits"
+                        onClick={() => setIsOpen(false)}
+                        className="hover:text-blue-400 transition w-full"
+                      >
+                        Benefits
+                      </Link>
+                      <a
+                        href="#contact"
+                        onClick={() => setIsOpen(false)}
+                        className="hover:text-blue-400 transition w-full"
+                      >
+                        Contact
+                      </a>
+            
+                      <a
+                        href="#demo"
+                        onClick={() => setIsOpen(false)}
+                        className="mt-6 inline-flex items-center gap-2 rounded-[12px] px-6 py-3 font-semibold bg-gradient-to-r from-[#855afc] to-[#0ea5e9] text-white hover:opacity-90"
+                      >
+                        Book a Demo <span>→</span>
+                      </a>
+                    </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+};
 
-  {/* <!-- Mobile Dropdown Menu -->/ */}
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-    <nav class="flex flex-col items-center gap-4 py-4">
-      <a href="#home" class="hover:text-blue-600 transition">Home</a>
-      <a href="#about" class="hover:text-blue-600 transition">About</a>
-      <a href="#architecture" class="hover:text-blue-600 transition">Architecture</a>
-      <a href="#industries" class="hover:text-blue-600 transition">Industries</a>
-      <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
-      <a
-    href="#demo"
-    
-    className="inline-flex items-center gap-2 rounded-[12px] px-6 py-3 font-semibold bg-gradient-to-r from-[#855afc] to-[#0ea5e9] text-white"
-  >
-   Book a Demo <span>→</span>
-  </a>
-    </nav>
-  </div>
-</header>
+export default Header;
 
-  )
-}
 
-export default Header
+
+
+
+
+
+
+

@@ -2,6 +2,15 @@
 
 
 
+  .icon {
+    width: 20px !important;
+    height: 20px !important;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+
+
 @layer base {
   body {
     @apply bg-black text-white;

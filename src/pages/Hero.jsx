@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
-  const heading = "Agentic AI  Making Preventive Healthcare & Wellness Simple".split(" ");
+  const heading = "Agentic AI  Architecture - Preventive Healthcare & Wellness Simple".split(" ");
 
   return (
     <section
       id="hero"
-      className="relative flex  bg-cover bg-center py-10 items-center justify-center lg:min-h-[80vh] text-center overflow-hidden"
+      className="relative flex  bg-cover bg-center py-20 items-center justify-center lg:min-h-[80vh] text-center overflow-hidden"
       
     >
       <div className="absolute bg-[url('/videos/bgg.gif')] bg-cover bg-center inset-0 bg-gradient-to-b from-[rgba(12,14,26,0.8)] to-[rgba(12, 14, 26, 0.13)]"></div>
@@ -65,6 +66,7 @@ export default function Hero() {
    Book a Demo <span>→</span>
   </motion.a>
 
+ <Link to='/industries'>
   {/* Second Button */}
   <motion.a
     href="https://forms.gle/WXd75AEmrViwKVPY6"
@@ -74,6 +76,7 @@ export default function Hero() {
   >
     Start free trial <span>→</span>
   </motion.a>
+ </Link>
 </motion.div>
         
       </div>

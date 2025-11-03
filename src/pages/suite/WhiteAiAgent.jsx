@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const WhiteAiAgent = () => {
   const [visibleCards, setVisibleCards] = useState([]);
@@ -30,7 +32,8 @@ const WhiteAiAgent = () => {
   }, []);
 
   return (
-    <section className="rounded-3xl lg:bg-[#0A0810] backdrop-blur lg:border border-white/10 shadow-soft lg:p-6 overflow-hidden">
+    <section className="rounded-3xl lg:bg-[#0A0810] backdrop-blur lg:border border-white/10 shadow-soft p-6 overflow-hidden">
+         
       <div className="flex flex-col items-center justify-center ">
         <h2 className="text-3xl font-semibold mb-4 text-white text-center">White-label AI Agents</h2>
       <p className="text-white/75 max-w-4xl text-center mb-6">

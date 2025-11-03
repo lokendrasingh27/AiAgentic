@@ -1,70 +1,75 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import React, { useRef } from "react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-
-// Example industry data
-const industries = [
-  {img:"/images/one.jpg"},
-  {img:"/images/two.jpg"},
-  {img:"/images/three.jpg"},
-  {img:"/images/four.jpg"},
-  {img:"/images/five.jpg"},
-  {img:"/images/six.jpg"},
-  {img:"/images/seven.jpg"},
-  {img:"/images/eight.jpg"},
-  {img:"/images/nine.jpg"},
-  {img:"/images/ten.jpg"},
-  {img:"/images/eleven.jpg"},
+const features = [
+  { img: "/images/one.jpg" },
+  { img: "/images/two.jpg" },
+  { img: "/images/three.jpg" },
+  { img: "/images/four.jpg" },
+  { img: "/images/five.jpg" },
+  { img: "/images/six.jpg" },
+  { img: "/images/seven.jpg" },
+  { img: "/images/eight.jpg" },
+  { img: "/images/nine.jpg" },
+  { img: "/images/ten.jpg" },
+  { img: "/images/eleven.jpg" },
+  { img: "/images/twelve.jpg" },
+  { img: "/images/thirteen.jpg" },
+  { img: "/images/fourteen.jpg" },
+  { img: "/images/fivteen.jpg" },
 ];
 
 export default function Features() {
-  return (
-    <div className="relative w-full max-w-6xl mx-auto ">
-           <h2 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center">Features</h2>
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={4}
-        slidesPerView={3}
-        navigation
-        loop={true}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-          reverseDirection: false, // 👉 change to true to make it go opposite direction
-        }}
-        direction="horizontal" // 👉 change to "vertical" for up-down movement
-        breakpoints={{
-          340: { slidesPerView: 1 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4},
-        }}
-        className="rounded-xl"
-      >
-        {industries.map((ind) => (
-          <SwiperSlide key={ind.key}>
-            <div className="bg-whit transition-transform duration-500 hover:scale-110 rounded-xl py-4 flex flex-col items-center  transition cursor-pointer">
-              <img
-                src={ind.img}
-                alt={ind.name}
-                className="h-64 w-64 rounded-xl object-cover mb-2"
-              />
-              <span className="text-white/90 text-sm">{ind.name}</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  const scrollRef = useRef(null);
 
-      {/* optional custom buttons if you want */}
-      <style>{`
-        .swiper-button-next,
-        .swiper-button-prev {
-          color: white;
-        }
-      `}</style>
-    </div>
+  const scroll = (direction) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const scrollAmount = direction === "left" ? -300 : 300;
+    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
+  return (
+    <section className="relative w-full max-w-6xl mx-auto px-4 py-10 text-white">
+      <h2 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center">
+        Features
+      </h2>
+
+      <div className="relative">
+        {/* Left Button */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700 text-white px-3 py-1 rounded-full z-10"
+        >
+          &#10094;
+        </button>
+
+        {/* Scrollable Image Container */}
+        <div
+          ref={scrollRef}
+          className="useCase flex overflow-x-auto scrollbar-hide gap-6 py-4 scroll-smooth"
+        >
+          {features.map((item, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0"
+            >
+              <img
+                src={item.img}
+                alt={`Feature ${index + 1}`}
+                className="h-64 w-full object-cover rounded-2xl hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Right Button */}
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800/80 hover:bg-gray-700 text-white px-3 py-1 rounded-full z-10"
+        >
+          &#10095;
+        </button>
+      </div>
+    </section>
   );
 }

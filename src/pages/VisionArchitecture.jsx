@@ -9,7 +9,7 @@ const VisionArchitecture = () => {
         scale: 1.02,
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col text-center items-center justify-center border border-white/10 rounded-2xl p-8 shadow-md bg-white/5 backdrop-blur-md overflow-hidden group"
+      className="relative flex flex-col text-center items-center justify-center border border-white/10 rounded-2xl p-8 shadow-md bg-[#0A0810] backdrop-blur-md overflow-hidden group"
     >
       {/* Gradient border glow on hover */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-[#4E7CEA]/40 via-[#4ECCA3]/40 to-[#4E7CEA]/40 blur-md"></div>
